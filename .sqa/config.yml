@@ -1,0 +1,64 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/cerfacs-globc/idownscale:
+      branch: master
+      repo: https://github.com/cerfacs-globc/idownscale
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/cerfacs-globc/idownscale git:
+        commands:
+        - /usr/bin/env sh .sqa/script.homey-orchid-hyena.sh
+        container: qc.acc_squirrely-blue-cat
+  QC.Doc:
+    repos:
+      github.com/cerfacs-globc/idownscale find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.shabby-eggplant-chihuahua.sh
+        container: qc.doc_seedy-viridian-newt
+      github.com/cerfacs-globc/idownscale git:
+        commands:
+        - /usr/bin/env sh .sqa/script.baggy-asparagus-booby.sh
+        container: qc.doc_ready-harlequin-mandrill
+      github.com/cerfacs-globc/idownscale markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.smelly-firebrick-rat.sh
+        container: qc.doc_whiny-grey-mole
+  QC.Lic:
+    repos:
+      github.com/cerfacs-globc/idownscale licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.flabby-olivine-budgerigar.sh
+        container: qc.lic_hazy-plum-ray
+  QC.Sec:
+    repos:
+      github.com/cerfacs-globc/idownscale bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.baggy-apricot-chicken.sh
+        container: qc.sec_tacky-celadon-snail
+  QC.Sty:
+    repos:
+      github.com/cerfacs-globc/idownscale flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.lousy-harlequin-koala.sh
+        container: qc.sty_chummy-pink-dhole
+  QC.Uni:
+    repos:
+      github.com/cerfacs-globc/idownscale pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.stealthy-green-russel.sh
+        container: qc.uni_tacky-persimmon-dolphin
+  QC.Ver:
+    repos:
+      github.com/cerfacs-globc/idownscale get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.cloudy-linen-hound.sh
+        container: qc.ver_sleazy-charcoal-beetle
+timeout: 5400
